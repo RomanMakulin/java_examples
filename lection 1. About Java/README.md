@@ -10,12 +10,45 @@
 - import java.util.Scanner (работа со считыванием данных, медленная);
 - 
 
+## Интересные функции и методы
+### Matches:
+str(аргумент).matches(rejex(выбрать условие)).
+
+Условием может выборка только чисел в строке, например:
+
+    if (i.matches("\\d+") == true)
+### charAt:
+Позволяет определить позицию в строке (!не в массиве строк!), например:
+
+    String str = "Roman";
+    str.charAt(2); // => "m"
+
+### Операции после полного названия типа:
+После полного названия оригинального типа можно выполнять множество функций, таких как преобразование в строку (string) или же в число (int). Пример:
+
+    String num = "23";
+    int a = Integer.parseInt(num); - string в int
+    String b = Integer.ToString(a); - int в string
+    ...println(Array.ToString(array)); - распечатать массив
 
 ## Конструкции/фичи кода
 Конвертация в строку:
     
     int i = 23;
     Integer.toString(i);
+
+Выбор чисел из строчных значений:
+
+    BufferedReader buffR = new BufferedReader(new FileReader("input.txt")); // Инициализация баффера
+    String line = buffR.readLine(); // считываем строку с файла
+    String[] nums = line.split(" "); // разделяем элементы строки в массив строк
+    int sum = 0;
+
+    for (String i : nums) { // Считываем каждый элемент массива строки
+        if (i.matches("\\d+") == true) // Проверяем является ли элемент числом (d)
+            sum += Integer.parseInt(i); // Суммируем числа
+    }
+    buffR.close(); // Закрываем поток
 
 Распечатаем сплитованный массив строк:
 
