@@ -16,13 +16,61 @@ public class ex1 {
 
         String sql = "select * from students where";
 
-      
-        String line = replace(reader());
-        System.out.println(line);
+        String line = reader().replace("{", "")
+                .replace("}", "")
+                .replace("'", "");
 
-        String[] arr = line.split(" ");
+        String[] arr = line.split(", ");
+
+        // for (int i = 0; i < arr.length; i++) {
+        // if (arr[i].contains("null")) {
+        // arr[i] = "";
+
+        // }
+        // }
+
         System.out.println(Arrays.toString(arr));
+        System.out.println(sql + " " + arrToStr(arr));
 
+    }
+
+    private static String arrToStr(String[] str) {
+        StringBuilder builder = new StringBuilder();
+        String[] newArr = new String[str.length];
+        int count = 0;
+
+        for (int i = 0; i < newArr.length; i++) {
+            if (str[i].contains("null") || str[i] == null) {
+                System.out.println("null");
+            } else {
+                newArr[count] = str[i];
+                count++;
+            }
+        }
+        System.out.println(Arrays.toString(newArr));
+
+        for (int i = 0; i < newArr.length; i++) {
+
+            if (i < newArr.length - 1) {
+                builder.append(newArr[i]);
+            }
+
+            if (i < newArr.length - 2) {
+                builder.append(" and ");
+            }
+            
+            if (i == newArr.length - 1) {
+                builder.append(";");
+            }
+
+            
+
+        }
+
+        // for (String string : str) {
+        // builder.append(string).append(" and ");
+        // }
+        return builder.toString();
     }
 
     // Читаем файл и записываем в строку
@@ -31,22 +79,12 @@ public class ex1 {
         StringBuilder str = new StringBuilder();
         try {
             reader = new BufferedReader(new FileReader("ex1.txt"));
-            str.append(reader.readLine()).append(System.lineSeparator());
+            str.append(reader.readLine());
+
         } catch (Exception e) {
             e.printStackTrace();
         }
         return str.toString();
     }
 
-    private static String replace(String str) {
-        str = str.replace("{", "")
-                .replace("}", "")
-                .replace("'", "")
-                .replace("age:null", "")
-                .replace(",", " and");
-
-        
-
-        return str;
-    }
 }
