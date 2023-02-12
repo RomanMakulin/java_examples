@@ -1,0 +1,8 @@
+.git
+.gitignore
+.idea
+desk.txt
+README.md
+seminar
+ToKnow
+Traning
