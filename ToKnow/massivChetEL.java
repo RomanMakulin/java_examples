@@ -24,7 +24,6 @@ public class massivChetEl {
             for (int i = 0; i < newArr.length; i++) {
                 Random random = new Random();
                 newArr[i] = random.nextInt(1, 10);
-
             }
 
             // проверяет условие задачи и формирует новый размер для след массива

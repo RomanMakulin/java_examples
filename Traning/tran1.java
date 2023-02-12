@@ -1,49 +1,27 @@
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Arrays;
-import java.io.BufferedWriter;
+// Дано четное число N (>0) и символы c1 и c2. 
+// Написать метод, который вернет строку длины N, которая состоит из чередующихся символов c1 и c2, начиная с c1.
+import java.util.Random;
 
 public class tran1 {
-    public static void main(String[] args) throws IOException {
-        // Напишите метод, который вернет содержимое текущей папки в виде массива строк.
-        // Напишите метод, который запишет массив, возвращенный предыдущим методом в
-        // файл.
-        // Обработайте ошибки с помощью try-catch конструкции. В случае возникновения
-        // исключения, оно должно записаться в лог-файл.
-
-        String[] str = stringFiles();
-        ArrayToFile(str);
+    public static void main(String[] args) {
+        int n = 5;
+        char c1 = 'v';
+        char c2 = 'q';
+        String resultString = "";
+        resultString = newStr(n, c1, c2, resultString);
+        System.out.println(resultString);
     }
 
-    // Содержание папки в массив строк
-    public static String[] stringFiles() {
-        File file = new File(".");
-        String[] list = file.list();
-        System.out.println(Arrays.toString(list));
-        return list;
-    }
-
-    // Запись из массива строк в файл
-    public static void ArrayToFile(String[] list) throws IOException {
-        BufferedWriter reader = null;
-        try {
-            reader = new BufferedWriter(new FileWriter("desk.txt"));
-
-            for (String string : list) {
-                reader.write(string + System.lineSeparator());
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (reader != null)
-                    reader.close();
-            } catch (IOException io) {
-                // log exception here
-            }
-
+    private static String newStr(int n, char c1, char c2, String resultString) {
+        StringBuilder str = new StringBuilder();
+        Random random = new Random();
+        for (int i = 0; i < n; i++) {
+            int generation = random.nextInt(1, 3); // генерируем рандомное c1 or c2
+            if (generation == 1)
+                str.append(c1); // добавляем значение в результирующую строку
+            else
+                str.append(c2);
         }
-
+        return str.toString();
     }
 }

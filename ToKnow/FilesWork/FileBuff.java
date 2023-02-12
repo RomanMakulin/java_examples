@@ -1,3 +1,4 @@
+package FilesWork;
 // Чтение и запись файла
 import java.io.*;
 public class FileBuff {

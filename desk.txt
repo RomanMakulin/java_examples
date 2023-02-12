@@ -2,7 +2,9 @@
 .gitignore
 .idea
 desk.txt
+log.txt
 README.md
 seminar
+text.txt
 ToKnow
 Traning
