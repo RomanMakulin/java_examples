@@ -1,9 +1,6 @@
 package seminar.sem2;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.io.InputStreamReader;
-import java.util.Arrays;
 
 // Дана строка sql-запроса "select * from students where ". 
 // Сформируйте часть WHERE этого запроса, используя StringBuilder. 
@@ -13,63 +10,37 @@ import java.util.Arrays;
 
 public class ex1 {
     public static void main(String[] args) {
-
         String sql = "select * from students where";
-
-        String line = reader().replace("{", "")
-                .replace("}", "")
-                .replace("'", "");
-
-        String[] arr = line.split(", ");
-
-        // for (int i = 0; i < arr.length; i++) {
-        // if (arr[i].contains("null")) {
-        // arr[i] = "";
-
-        // }
-        // }
-
-        System.out.println(Arrays.toString(arr));
-        System.out.println(sql + " " + arrToStr(arr));
-
+        System.out.println(sql + " " + arrToStr(repl(reader()).split(", ")));
     }
 
     private static String arrToStr(String[] str) {
         StringBuilder builder = new StringBuilder();
         String[] newArr = new String[str.length];
-        int count = 0;
+        int count = 0; // счетчик нового массива
+        int sizeNull = 0; // определение будущего размера массива с учетом нулевых значений
 
         for (int i = 0; i < newArr.length; i++) {
             if (str[i].contains("null") || str[i] == null) {
-                System.out.println("null");
+                sizeNull++;
             } else {
                 newArr[count] = str[i];
                 count++;
             }
         }
-        System.out.println(Arrays.toString(newArr));
 
-        for (int i = 0; i < newArr.length; i++) {
-
-            if (i < newArr.length - 1) {
+        int newSize = newArr.length - sizeNull;
+        for (int i = 0; i < newSize; i++) {
+            if (i < newSize) {
                 builder.append(newArr[i]);
             }
-
-            if (i < newArr.length - 2) {
+            if (i < newSize - 1) {
                 builder.append(" and ");
             }
-            
-            if (i == newArr.length - 1) {
+            if (i == newSize - 1) {
                 builder.append(";");
             }
-
-            
-
         }
-
-        // for (String string : str) {
-        // builder.append(string).append(" and ");
-        // }
         return builder.toString();
     }
 
@@ -87,4 +58,10 @@ public class ex1 {
         return str.toString();
     }
 
+    private static String repl(String str) {
+        str = reader().replace("{", "")
+                .replace("}", "")
+                .replace("'", "");
+        return str;
+    }
 }
