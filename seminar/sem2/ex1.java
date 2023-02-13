@@ -1,4 +1,5 @@
 package seminar.sem2;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 
@@ -59,9 +60,10 @@ public class ex1 {
     }
 
     private static String repl(String str) {
-        str = reader().replace("{", "")
+        str.replace("{", "")
                 .replace("}", "")
                 .replace("'", "");
+
         return str;
     }
 }
