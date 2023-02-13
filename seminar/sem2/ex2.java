@@ -4,6 +4,9 @@
 package seminar.sem2;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.Random;
@@ -18,7 +21,7 @@ public class ex2 {
         System.out.println(Arrays.toString(bubleSorting(array)));
 
     }
-
+    // метод ввода с клавиатуры размера массива
     private static int input(int number) {
         BufferedReader reader;
         try {
@@ -31,6 +34,7 @@ public class ex2 {
         return number;
     }
 
+    // заполнение массива рандомом
     private static int[] FillArr(int[] collection) {
         Random random = new Random();
         int min = 1;
@@ -41,23 +45,35 @@ public class ex2 {
         return collection;
     }
 
+    // метод сортировки массива пузырьком
     private static int[] bubleSorting(int[] collection) {
         int temp;
 
-        // логирование
+        // логирование + сортировка + обработка исключений
+        BufferedWriter writer = null;
+        try {
+            writer = new BufferedWriter(new FileWriter("log.txt"));
 
-
-
-        for (int i = 0; i < collection.length - 1; i++) {
-            for (int j = i + 1; j < collection.length; j++) {
-                if (collection[j] < collection[i]) {
-                    temp = collection[i];
-                    collection[i] = collection[j];
-                    collection[j] = temp;
+            for (int i = 0; i < collection.length - 1; i++) {
+                for (int j = i + 1; j < collection.length; j++) {
+                    if (collection[j] < collection[i]) {
+                        temp = collection[i];
+                        collection[i] = collection[j];
+                        collection[j] = temp;
+                    }
+                    writer.write(Arrays.toString(collection) + System.lineSeparator());
                 }
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (writer != null)
+                    writer.close();
+            } catch (IOException io) {
             }
         }
         return collection;
     }
-
 }
