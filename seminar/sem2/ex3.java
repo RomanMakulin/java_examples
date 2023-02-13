@@ -11,12 +11,7 @@ import java.io.FileReader;
 
 public class ex3 {
     public static void main(String[] args) {
-
-        String str = parseStr();
-        String[] arrStr = str.split(" ");
-        String secondName = arrStr[1], rating = arrStr[3], subject = arrStr[5];
-        System.out.printf("Студент %s получил оценку %s по предмету %s;", secondName, rating, subject);
-
+        System.out.println(parseStr());
     }
 
     private static String parseStr() {
@@ -24,13 +19,21 @@ public class ex3 {
         StringBuilder str = new StringBuilder();
         try {
             reader = new BufferedReader(new FileReader("ex3.txt"));
-            str.append(reader.readLine().replace("[", "")
-                    .replace("]", "")
-                    .replace("{", "")
-                    .replace("}", "")
-                    .replace(":", " ")
-                    .replace(",", "")
-                    .replace("'", ""));
+
+            String line;
+            while ((line = reader.readLine()) != null) {
+
+                str.append(line.replace("[", "")
+                        .replace("]", "")
+                        .replace("{", "")
+                        .replace("}", "")
+                        .replace(":", " ")
+                        .replace("Фамилия", "Студент")
+                        .replace("оценка", "получил оценку")
+                        .replace("предмет", "по предмету")
+                        .replace(",", "")
+                        .replace("'", "") + System.lineSeparator());
+            }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
