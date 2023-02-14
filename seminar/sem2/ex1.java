@@ -12,7 +12,7 @@ import java.io.FileReader;
 public class ex1 {
     public static void main(String[] args) {
         String sql = "select * from students where";
-        System.out.println(sql + " " + arrToStr(repl(reader()).split(", ")));
+        System.out.println(sql + " " + arrToStr((reader()).split(", ")));
     }
 
     private static String arrToStr(String[] str) {
@@ -45,25 +45,23 @@ public class ex1 {
         return builder.toString();
     }
 
-    // Читаем файл и записываем в строку
+    // Читаем файл и записываем в строку, форматируя ее как нам надо
     private static String reader() {
         BufferedReader reader;
         StringBuilder str = new StringBuilder();
+        String line = "";
         try {
             reader = new BufferedReader(new FileReader("ex1.txt"));
-            str.append(reader.readLine());
+
+            // записываем в строку и форматируем
+            line = str.append(reader.readLine()).toString().replace("{", "")
+                    .replace("}", "")
+                    .replace("'", "");
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return str.toString();
+        return line;
     }
 
-    private static String repl(String str) {
-        str.replace("{", "")
-                .replace("}", "")
-                .replace("'", "");
-
-        return str;
-    }
 }
