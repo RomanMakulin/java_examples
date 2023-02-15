@@ -1,6 +1,6 @@
 // Бинарный поиск элемента массива
 
-public class ex4 {
+public class BinarySearch {
     public static void main(String[] args) {
 
         int[] array = { 2, 4, 1, 6, 2, 10 };

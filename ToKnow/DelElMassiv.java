@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 // Удаление указанного элемента из массива
 
-public class ex3 {
+public class DelElMassiv {
     public static void main(String[] args) {
 
         int[] array = { 3, 2, 1, 6, 7, 1, 10 };
