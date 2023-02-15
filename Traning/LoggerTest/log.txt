@@ -1,0 +1,2 @@
+февр. 15, 2023 8:52:37 AM LoggerTest.example calc
+INFO: Программа в порядке
