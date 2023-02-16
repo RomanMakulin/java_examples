@@ -1,6 +1,8 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 // Удаление указанного элемента из массива
 
@@ -8,9 +10,8 @@ public class DelElMassiv {
     public static void main(String[] args) {
 
         int[] array = { 3, 2, 1, 6, 7, 1, 10 };
-        System.out.print("Введите элемент удаления: ");
-        int[] newArr = del(array, input());
-        System.out.println(Arrays.toString(newArr));
+        System.out.print(Arrays.toString(array) + "\nВведите элемент удаления: ");
+        System.out.println(del(array, input()));
 
     }
 
@@ -22,21 +23,21 @@ public class DelElMassiv {
             reader = new BufferedReader(new InputStreamReader(System.in));
             n = Integer.parseInt(reader.readLine());
         } catch (Exception e) {
-            // TODO: handle exception
+            e.printStackTrace();
         }
         return n;
     }
 
-    // метод удаления указанного эелемента
-    public static int[] del(int[] array, int n) {
-        int offset = 0;
+    // del with list
+    private static Object del(int[] array, int searchElement) {
+
+        List<Integer> list = new ArrayList<>();
         for (int i = 0; i < array.length; i++) {
-            if (array[i] == n)
-                offset++;
-            else
-                array[i - offset] = array[i];
+            if (array[i] != searchElement)
+                list.add(array[i]);
         }
-        return Arrays.copyOf(array, array.length - offset);
+
+        return list;
     }
 
 }
