@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 // Расширение массива коллекцией (list) + удаление + замена элемента
@@ -28,9 +27,6 @@ public class ListArrayReSize {
         list.remove(1);
         
         System.out.println(list);
-
-        
-        
 
     }
 }
