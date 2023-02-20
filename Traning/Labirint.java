@@ -1,7 +1,9 @@
+import java.util.Arrays;
+
 public class Labirint {
     public static void main(String[] args) {
-        int rows = 10;
-        int columns = 10;
+        int rows = 15;
+        int columns = 15;
         String[][] array = new String[rows][columns];
         FillArray(array, rows, columns);
 
@@ -22,12 +24,16 @@ public class Labirint {
         array[4][3] = "/";
         array[4][4] = "/";
         array[4][5] = "/";
+        array[7][4] = "1";
+        array[7][5] = "/";
+        array[8][5] = "/";
+        array[9][5] = "/";
         array[5][5] = "/";
         array[6][5] = "/";
-        array[7][2] = "/";
-        array[7][3] = "/";
-        array[7][4] = "/";
-        array[7][5] = "/";
+        array[10][2] = "/";
+        array[10][3] = "/";
+        array[10][4] = "/";
+        array[10][5] = "/";
 
         // строим стены
         for (int i = 0; i < rows; i++) {
@@ -36,6 +42,7 @@ public class Labirint {
             }
             System.out.println();
         }
+
 
     }
 }
