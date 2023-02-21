@@ -1,4 +1,6 @@
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class Labirint {
     public static void main(String[] args) {
@@ -43,6 +45,9 @@ public class Labirint {
             System.out.println();
         }
 
+        Queue<Integer> ll = new LinkedList<>();
+        ll.add(2);
 
     }
+
 }
