@@ -39,9 +39,9 @@ public class labirintNew {
             }
             System.out.println();
         }
-        // x = 1; y = 3
-        for (int i = 1; i < rows; i++) {
-            for (int j = 3; j < columns; j++) {
+        // x = 3; y = 4
+        for (int i = ll.get(0).x; i < rows; i++) {
+            for (int j = ll.get(0).y; j < columns; j++) {
                 // upper
                 if (array[ll.get(0).x - 1][ll.get(0).y] == 0) {
                     array[ll.get(0).x - 1][ll.get(0).y] += 1;
@@ -58,6 +58,7 @@ public class labirintNew {
                 if (array[ll.get(0).x][ll.get(0).y - 1] == 0) {
                     array[ll.get(0).x][ll.get(0).y - 1] += 1;
                 }
+               
             }
 
         }
