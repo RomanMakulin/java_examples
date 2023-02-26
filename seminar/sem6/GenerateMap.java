@@ -1,6 +1,6 @@
 package seminar.sem6;
 
-// Создание и получение карты
+// [Class] Создание и получение карты. Определение точки входа и выхода
 public class GenerateMap {
     int map[][];
     int enter = -2;
@@ -35,7 +35,7 @@ public class GenerateMap {
     }
 }
 
-// Создание класса точки по 2 координатам
+// [Class] Создание класса точки по 2 координатам, их получение и пересборка String
 class Point2D {
     int x;
     int y;
