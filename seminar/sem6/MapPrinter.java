@@ -1,5 +1,3 @@
-package ToKnow.Labirint;
-
 // Класс печати карты
 class MapPrinter {
     public String rawData(int[][] map) {

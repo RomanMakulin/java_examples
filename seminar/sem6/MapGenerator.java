@@ -1,5 +1,4 @@
-package ToKnow.Labirint;
-
+// Класс генерации карты
 class MapGenerator {
     int[][] map;
 

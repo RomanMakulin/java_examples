@@ -1,5 +1,3 @@
-package ToKnow.Labirint;
-
 // Класс определения точки по координатам
 class Point2D {
     int x;
