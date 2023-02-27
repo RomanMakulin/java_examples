@@ -23,7 +23,8 @@ public class Main {
             mg.getMap())
 
     );
-    lee.getRoad(new Point2D(10, 10));
+    lee.getRoad(new Point2D(1, 1));
+    System.out.println(lee.getRoad(new Point2D(1, 1)));
 
   }
 }
@@ -150,18 +151,40 @@ class WaveAlgorithm {
   public ArrayList<Point2D> getRoad(Point2D exit) {
     ArrayList<Point2D> road = new ArrayList<>();
 
-    map[exit.x][exit.y] = -3;
-    road.add(new Point2D(3, 3));
     int count = 0;
 
-    for (int i = 3; i < map.length; i++) {
-      for (int j = 3; j < map.length; j++) {
-        if (map[i][j] == map[i][j] + 1){
-          
-        }
+    while (map[exit.x][exit.y] > 1){
+      // up
+      if (map[exit.x-1][exit.y] == map[exit.x][exit.y] - 1){
+        road.add(count, new Point2D(exit.x, exit.y));
+        System.out.println(map[exit.x][exit.y]);
+        exit.x--;
       }
-    }
 
+      // right
+      if (map[exit.x][exit.y+1] == map[exit.x][exit.y] - 1){
+        road.add(count, new Point2D(exit.x, exit.y));
+        System.out.println(map[exit.x][exit.y]);
+        exit.y++;
+      }
+
+      // down
+      if (map[exit.x+1][exit.y] == map[exit.x][exit.y] - 1){
+        road.add(count, new Point2D(exit.x, exit.y));
+        System.out.println(map[exit.x][exit.y]);
+        exit.x++;
+      }
+
+      // left
+      if (map[exit.x][exit.y-1] == map[exit.x][exit.y] - 1){
+        road.add(count, new Point2D(exit.x, exit.y));
+        System.out.println(map[exit.x][exit.y]);
+        exit.y--;
+      }
+      count++;
+
+    }
+    
 
     return road;
   }
