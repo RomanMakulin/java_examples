@@ -6,29 +6,32 @@ import java.util.Queue;
 public class Main {
   public static void main(String[] args) {
 
+    // Получаем класс генерации карты
     var mg = new MapGenerator();
 
+    // Печатаем сгенерированную карту
     System.out.println(
         new MapPrinter().rawData(
-            mg.getMap())
+            mg.getMap()));
 
-    );
-
+    // Получаем класс волнового алгоритма
     var lee = new WaveAlgorithm(mg.getMap());
 
+    // Запускаем реализацию волнового алгоритма заполняя карту
     lee.Colorize(new Point2D(3, 3));
 
+    // Печатаем заполненную карту
     System.out.println(
         new MapPrinter().rawData(
-            mg.getMap())
+            mg.getMap()));
 
-    );
-    lee.getRoad(new Point2D(1, 1));
-    System.out.println(lee.getRoad(new Point2D(1, 1)));
+    // Показываем кратчайший путь
+    System.out.println(lee.getRoad(new Point2D(5, 5)));
 
   }
 }
 
+// Класс указания двух точек
 class Point2D {
   int x, y;
 
@@ -37,23 +40,18 @@ class Point2D {
     this.y = y;
   }
 
-  public int getX() {
-    return x;
-  }
-
-  public int getY() {
-    return y;
-  }
-
+  // Пересобираем функцию для печати как нам нужно
   @Override
   public String toString() {
-    return String.format("x: %d  y: %d", x, y);
+    return String.format("(x: %d  y: %d)", x, y);
   }
 }
 
+// Класс генерации карты
 class MapGenerator {
   int[][] map;
 
+  // Метод генерации карты
   public MapGenerator() {
     int[][] map = {
         { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 },
@@ -76,24 +74,17 @@ class MapGenerator {
     this.map = map;
   }
 
+  // Возвращаем сгенерированную карту
   public int[][] getMap() {
     return map;
   }
 
-  public void setCat(Point2D pos) {
-    map[pos.x][pos.y] = -2;
-  }
-
-  public void setExit(Point2D pos) {
-    map[pos.x][pos.y] = -3;
-  }
 }
 
+// Класс печати карты
 class MapPrinter {
 
-  public MapPrinter() {
-  }
-
+  // Метод печати карты
   public String rawData(int[][] map) {
     StringBuilder sb = new StringBuilder();
 
@@ -103,6 +94,7 @@ class MapPrinter {
       }
       sb.append("\n");
     }
+    // промежуток 3 строки
     for (int i = 0; i < 3; i++) {
       sb.append("\n");
     }
@@ -112,13 +104,16 @@ class MapPrinter {
 
 }
 
+// Класс волнового алгоритма
 class WaveAlgorithm {
   int[][] map;
 
+  // Делаем карту "публичной" для класса
   public WaveAlgorithm(int[][] map) {
     this.map = map;
   }
 
+  // Метод реализации распространения волны и "закрашивания числами" ячеек
   public void Colorize(Point2D startPoint) {
     Queue<Point2D> queue = new LinkedList<Point2D>();
     queue.add(startPoint);
@@ -146,45 +141,48 @@ class WaveAlgorithm {
     }
   }
 
-  // lee.getRoad(new Point2D(10, 10), new Point2D(10, 20), new Point2D(10, 30));
-
+  // Метод получения кратчайшего пути по заданным координатам выхода
   public ArrayList<Point2D> getRoad(Point2D exit) {
     ArrayList<Point2D> road = new ArrayList<>();
+    road.add(0, new Point2D(exit.x, exit.y)); // добавляем координату выхода
+    System.out.println(map[exit.x][exit.y]);
+    int count = 1; // счетчик кол-ва шагов
 
-    int count = 0;
+    // идем от выхода в начало
+    while (map[exit.x][exit.y] > 1) {
 
-    while (map[exit.x][exit.y] > 1){
       // up
-      if (map[exit.x-1][exit.y] == map[exit.x][exit.y] - 1){
-        road.add(count, new Point2D(exit.x, exit.y));
-        System.out.println(map[exit.x][exit.y]);
+      if (map[exit.x - 1][exit.y] == map[exit.x][exit.y] - 1) {
+        road.add(count, new Point2D(exit.x - 1, exit.y));
+        System.out.println(map[exit.x - 1][exit.y]);
         exit.x--;
+        count++;
       }
 
       // right
-      if (map[exit.x][exit.y+1] == map[exit.x][exit.y] - 1){
-        road.add(count, new Point2D(exit.x, exit.y));
-        System.out.println(map[exit.x][exit.y]);
+      if (map[exit.x][exit.y + 1] == map[exit.x][exit.y] - 1) {
+        road.add(count, new Point2D(exit.x, exit.y + 1));
+        System.out.println(map[exit.x][exit.y + 1]);
         exit.y++;
+        count++;
       }
 
       // down
-      if (map[exit.x+1][exit.y] == map[exit.x][exit.y] - 1){
-        road.add(count, new Point2D(exit.x, exit.y));
-        System.out.println(map[exit.x][exit.y]);
+      if (map[exit.x + 1][exit.y] == map[exit.x][exit.y] - 1) {
+        road.add(count, new Point2D(exit.x + 1, exit.y));
+        System.out.println(map[exit.x + 1][exit.y]);
         exit.x++;
+        count++;
       }
 
       // left
-      if (map[exit.x][exit.y-1] == map[exit.x][exit.y] - 1){
-        road.add(count, new Point2D(exit.x, exit.y));
-        System.out.println(map[exit.x][exit.y]);
+      if (map[exit.x][exit.y - 1] == map[exit.x][exit.y] - 1) {
+        road.add(count, new Point2D(exit.x, exit.y - 1));
+        System.out.println(map[exit.x][exit.y - 1]);
         exit.y--;
+        count++;
       }
-      count++;
-
     }
-    
 
     return road;
   }
