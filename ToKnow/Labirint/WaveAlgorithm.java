@@ -1,4 +1,4 @@
-package ToKnow.Labirint;
+package Labirint;
 
 import java.util.LinkedHashMap;
 import java.util.LinkedList;

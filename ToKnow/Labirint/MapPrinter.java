@@ -1,4 +1,4 @@
-package ToKnow.Labirint;
+package Labirint;
 
 // Класс печати карты
 class MapPrinter {

@@ -1,3 +1,4 @@
+package Lesson_04;
 import java.util.*;
 
 public class Ex006 {

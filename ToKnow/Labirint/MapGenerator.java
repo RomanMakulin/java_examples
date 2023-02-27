@@ -1,4 +1,4 @@
-package ToKnow.Labirint;
+package Labirint;
 
 class MapGenerator {
     int[][] map;
