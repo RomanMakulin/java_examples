@@ -1,4 +1,4 @@
-package Lesson_07.Ex007;
+package ClassesWorkOOP.Lesson_07.Ex007;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +32,7 @@ public class Program {
 
         // #region Teams
 
-        int teamCount = 10;
+        int teamCount = 5;
         Random rand = new Random();
         int magicianCount = 0;
         int priestCount = 0;
@@ -59,7 +59,7 @@ public class Program {
         }
 
         System.out.println();
-        System.out.printf("magicalCount: %d; priestCount: %d; healerCount: %d \n\n", magicianCount, priestCount, healerCount);
+        System.out.printf("Count members: [Magicals: %d]; [Priests: %d]; [Healers: %d]. \n\n", magicianCount, priestCount, healerCount);
         
         
         teams.get(1).Heal(teams.get(2));
@@ -67,11 +67,5 @@ public class Program {
         System.out.println(teams.get(1).getInfo());
         System.out.println(teams.get(2).getInfo());
 
-        // attack
-
-        // #endregion
-
-        // todo добавить ещё один класс и 
-        // реализовать возможность лечения героев
     }
 }

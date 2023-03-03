@@ -1,7 +1,7 @@
 package ClassesWorkOOP.Lesson_07.Ex007;
 
 import java.util.Random;
- 
+
 public class BaseHero {
     protected static int number;
     protected static Random r;
@@ -21,18 +21,9 @@ public class BaseHero {
         this.maxHp = hp;
     }
 
-    public BaseHero() {
-        this(String.format("Hero_Priest #%d", ++BaseHero.number),
-                BaseHero.r.nextInt(100, 200));
-    }
-
     public String getInfo() {
-        return String.format("Name: %s  Hp: %d  Type: %s",
+        return String.format("Name: %s;  Hp: %d;  Type: %s",
                 this.name, this.hp, this.getClass().getSimpleName());
-    }
-
-    public void healed(int Hp) {
-        this.hp = Hp + this.hp;
     }
 
     public void GetDamage(int damage) {
@@ -43,12 +34,16 @@ public class BaseHero {
     }
 
     public void Attack(BaseHero target) {
-        int damage = BaseHero.r.nextInt(10, 20);      
+        int damage = BaseHero.r.nextInt(10, 20);
         target.GetDamage(damage);
     }
 
-    public void Heal(BaseHero target){
-        int hp = BaseHero.r.nextInt(1, 5); 
+    public void healed(int hp) {
+        this.hp = hp + this.hp;
+    }
+
+    public void Heal(BaseHero target) {
+        int hp = BaseHero.r.nextInt(1, 5);
         target.healed(hp);
     }
 }
